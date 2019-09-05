@@ -322,7 +322,7 @@ public class subneteo
 
         try
         {
-            String destino = "C:\\Users\\luisg\\Desktop\\redes\\"+ss;
+            String destino = System.getProperty("user.home")+"\\Desktop\\"+ss;
             FileOutputStream fos = new FileOutputStream(destino);
             libro.write(fos);
             fos.close();
