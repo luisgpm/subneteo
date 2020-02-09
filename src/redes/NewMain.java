@@ -32,9 +32,9 @@ public class NewMain
         s = r.readLine();
         System.out.println("Dame el nombre del archivo de excel a crear:");
         titulo = r.readLine();
-        subneteo obj = new subneteo(x, s);
+        subneteo obj = new subneteo(x, s, titulo);
         
-        obj.crearExcel(titulo);
+        obj.crearExcel();
 
     }
 

@@ -5,6 +5,7 @@
  */
 package redes;
 
+import Lecturas.Lecturas;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -17,6 +18,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -28,6 +30,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class subneteo
 {
+    Lecturas leer = new Lecturas();
 
     BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
 
@@ -39,7 +42,7 @@ public class subneteo
 
     int cantidadHost = 0; // es el numero de filas que se van a calcular
     String ipRedInicial = ""; // es la ip de red que te da inicialmente
-
+    String titulo = "";
     String ipRed[];
     int host[];
     int rango[];
@@ -50,8 +53,9 @@ public class subneteo
     int aux[];
     String masc[];
 
-    public subneteo(int cantidadHost, String ipRedInicial)
+    public subneteo(int cantidadHost, String ipRedInicial, String titulo)
     {
+        this.titulo = titulo;
         this.cantidadHost = cantidadHost;
         this.ipRedInicial = ipRedInicial;
         ipRed = new String[cantidadHost]; // son las ip de red resultantes
@@ -80,8 +84,7 @@ public class subneteo
     {
         for (int i = 0; i < cantidadHost; i++)
         {
-            System.out.println("dame el " + i + " #Host:");
-            host[i] = Integer.parseInt(r.readLine());
+            host[i]= leer.leerInt("dame el"+i+" #host");
         }
     }
 
@@ -286,9 +289,9 @@ public class subneteo
         }
     }
     
-    public void crearExcel(String arch) throws IOException
+    public void crearExcel() throws IOException
     {
-        String  ss = arch+".xlsx";
+        String  ss = titulo+".xlsx";
         arrHost();
         rango();
         ipRedBroadcast();
@@ -305,7 +308,7 @@ public class subneteo
         titulo.createCell(6).setCellValue("Ip final");
         titulo.createCell(7).setCellValue("Ip broadcast");
         titulo.createCell(8).setCellValue("Ip mascara");
-        titulo.createCell(8).setCellValue("cifra");
+        titulo.createCell(9).setCellValue("cifra");
         for (int i = 0; i < cantidadHost; i++)
         {
             Row fila = sheet.createRow(i+1);
