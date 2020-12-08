@@ -30,11 +30,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class subneteo
 {
+    //Luis del futuro, ponte verga codenado que si te mamaste con este codigo...
     Lecturas leer = new Lecturas();
 
     BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
 
-    // son variables de la ip de red
+    // son variables de la ip de red 
     int a;
     int b;
     int c;
